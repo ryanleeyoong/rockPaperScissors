@@ -6,45 +6,85 @@ function getComputerChoice() {
                 : "An error has occured";
 }
 
-function getPlayerChoice() {
-    const x = prompt("Enter rock, paper or scissors: ");
-    if (x.toLowerCase() === "rock" || x.toLowerCase() === "paper" || x.toLowerCase() === "scissors") {
-        return x;
+function getPlayerChoice(choice) {
+    if (choice.toLowerCase() === "rock" || choice.toLowerCase() === "paper" || choice.toLowerCase() === "scissors") {
+        return choice;
     } else {
-        return console.log(x + " is an incorrect input, please enter rock, paper or scissors");
-        getPlayerChoice();
+        while (!choice.toLowerCase() === "rock" || !choice.toLowerCase() === "paper" || !choice.toLowerCase() === "scissors") {
+            console.log(choice + " is an incorrect input, please enter rock, paper or scissors");
+            choice = prompt("Enter rock, paper or scissors: ");
+        }  
     }
 }
 
 function playRound(playerSelection, computerSelection) {
     //win
     if (playerSelection == "rock" && computerSelection == "scissors") {
-        return console.log("You Win! Rock beats scissors!");
+        console.log("You Win! Rock beats scissors!");
+        return "win";
     } else if (playerSelection == "paper" && computerSelection == "rock") {
-        return console.log("You Win! Paper beats rock!");
+        console.log("You Win! Paper beats rock!");
+        return "win";
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        return console.log("You Win! Scissors beats paper!");
+        console.log("You Win! Scissors beats paper!");
+        return "win";
     }
     //lose
     else if (playerSelection == "rock" && computerSelection == "paper") {
-        return console.log("You Lose! Paper beats rock!");
+        console.log("You Lose! Paper beats rock!");
+        return "lose";
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
-        return console.log("You Lose! Scissors beats paper!");
+        console.log("You Lose! Scissors beats paper!");
+        return "lose";
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
-        return console.log("You Lose! Rock beats scissors!");
-    } 
+        console.log("You Lose! Rock beats scissors!");
+        return "lose";
+    }
     //draw
+    else if (playerSelection == "rock" && computerSelection == "rock") {
+        console.log("Rock and Rock is a draw!");
+        return "draw";
+    } else if (playerSelection == "paper" && computerSelection == "paper") {
+        console.log("Paper and Paper is a draw!");
+        return "draw";
+    } else if (playerSelection == "scissors" && computerSelection == "scissors") {
+        console.log("Scissors and Scissors is a draw!");
+        return "draw";
+    }
     else {
-        return console.log("Draw!");
+        console.log("Error occured in play round");
     }
 
 }
-
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
 
 function game() {
+    let winTracker = 0;
+    let loseTracker = 0;
+    let drawTracker = 0;
+
     for (let i = 0; i < 5; i++) {
-        playRound(playerSelection, computerSelection);
+        const x = prompt("Enter rock, paper or scissors: ");
+        const playerSelection = getPlayerChoice(x);
+        const computerSelection = getComputerChoice();
+        const startRound = playRound(playerSelection, computerSelection);
+
+        startRound;
+
+        if (startRound === "win") {
+            winTracker++;
+        } else if (startRound === "lose") {
+            loseTracker++;
+        } else if (startRound === "draw") {
+            drawTracker++;
+        } else {
+            console.log("An error occurred while tracking the score")
+        }
     }
+
+    console.log ("Score: Win - " + winTracker + " Lose - " + loseTracker + " Draw - " + drawTracker);
+    winTracker = 0;
+    loseTracker = 0;
+    drawTracker = 0;
 }
+
+game();

@@ -6,14 +6,15 @@ function getComputerChoice() {
                 : "An error has occured";
 }
 
-function getPlayerChoice(choice) {
-    if (choice.toLowerCase() === "rock" || choice.toLowerCase() === "paper" || choice.toLowerCase() === "scissors") {
-        return choice;
+function getPlayerChoice() {
+
+    let userInput = prompt("Enter rock, paper or scissors: ").toLowerCase();
+
+    if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
+        return userInput;
     } else {
-        while (!choice.toLowerCase() === "rock" || !choice.toLowerCase() === "paper" || !choice.toLowerCase() === "scissors") {
-            console.log(choice + " is an incorrect input, please enter rock, paper or scissors");
-            choice = prompt("Enter rock, paper or scissors: ");
-        }  
+        console.log(userInput + " is an incorrect input, please enter rock, paper or scissors");
+        return getPlayerChoice();
     }
 }
 
@@ -53,6 +54,7 @@ function playRound(playerSelection, computerSelection) {
     }
     else {
         console.log("Error occured in play round");
+        console.log(playerSelection);
     }
 
 }
@@ -63,8 +65,7 @@ function game() {
     let drawTracker = 0;
 
     for (let i = 0; i < 5; i++) {
-        const x = prompt("Enter rock, paper or scissors: ");
-        const playerSelection = getPlayerChoice(x);
+        const playerSelection = getPlayerChoice();
         const computerSelection = getComputerChoice();
         const startRound = playRound(playerSelection, computerSelection);
 
@@ -81,7 +82,7 @@ function game() {
         }
     }
 
-    console.log ("Score: Win - " + winTracker + " Lose - " + loseTracker + " Draw - " + drawTracker);
+    console.log("Score: Win - " + winTracker + " Lose - " + loseTracker + " Draw - " + drawTracker);
     winTracker = 0;
     loseTracker = 0;
     drawTracker = 0;

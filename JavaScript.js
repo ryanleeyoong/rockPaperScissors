@@ -8,14 +8,32 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
 
-    let userInput = prompt("Enter rock, paper or scissors: ").toLowerCase();
+    const buttons = document.querySelectorAll(".btn");
 
-    if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
-        return userInput;
-    } else {
-        console.log(userInput + " is an incorrect input, please enter rock, paper or scissors");
-        return getPlayerChoice();
-    }
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            let buttonValue = "";
+
+            if (button.innerHTML.toLowerCase() === "rock") {
+                buttonValue = "rock";
+            } else if (button.innerHTML.toLowerCase() === "paper") {
+                buttonValue = "paper";
+            } else if (button.innerHTML.toLowerCase() === "scissors") {
+                buttonValue = "scissors";
+            }
+
+            return buttonValue;
+        });
+    });
+    
+    // let userInput = prompt("Enter rock, paper or scissors: ").toLowerCase();
+
+    // if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
+    //     return userInput;
+    // } else {
+    //     console.log(userInput + " is an incorrect input, please enter rock, paper or scissors");
+    //     return getPlayerChoice();
+    // }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -60,32 +78,42 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    let winTracker = 0;
-    let loseTracker = 0;
-    let drawTracker = 0;
 
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-        const startRound = playRound(playerSelection, computerSelection);
+    const playerSelection = getPlayerChoice();
+    const computerSelection = getComputerChoice();
+    const startRound = playRound(playerSelection, computerSelection);
 
-        startRound;
+    startRound;
 
-        if (startRound === "win") {
-            winTracker++;
-        } else if (startRound === "lose") {
-            loseTracker++;
-        } else if (startRound === "draw") {
-            drawTracker++;
-        } else {
-            console.log("An error occurred while tracking the score")
-        }
-    }
+    // let winTracker = 0;
+    // let loseTracker = 0;
+    // let drawTracker = 0;
 
-    console.log("Score: Win - " + winTracker + " Lose - " + loseTracker + " Draw - " + drawTracker);
-    winTracker = 0;
-    loseTracker = 0;
-    drawTracker = 0;
+    // for (let i = 0; i < 5; i++) {
+    //     const playerSelection = getPlayerChoice();
+    //     const computerSelection = getComputerChoice();
+    //     const startRound = playRound(playerSelection, computerSelection);
+
+    //     startRound;
+
+    //     if (startRound === "win") {
+    //         winTracker++;
+    //     } else if (startRound === "lose") {
+    //         loseTracker++;
+    //     } else if (startRound === "draw") {
+    //         drawTracker++;
+    //     } else {
+    //         console.log("An error occurred while tracking the score")
+    //     }
+    // }
+
+    // console.log("Score: Win - " + winTracker + " Lose - " + loseTracker + " Draw - " + drawTracker);
+    // winTracker = 0;
+    // loseTracker = 0;
+    // drawTracker = 0;
 }
 
+
+
 game();
+

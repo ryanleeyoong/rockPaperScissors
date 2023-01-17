@@ -12,19 +12,33 @@ function getPlayerChoice() {
 
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            let buttonValue = "";
-
-            if (button.innerHTML.toLowerCase() === "rock") {
-                buttonValue = "rock";
-            } else if (button.innerHTML.toLowerCase() === "paper") {
-                buttonValue = "paper";
-            } else if (button.innerHTML.toLowerCase() === "scissors") {
-                buttonValue = "scissors";
-            }
-
-            return buttonValue;
+            let playerSelection = button.getAttribute('data-value');
+            let computerSelection = getComputerChoice();
+            playRound(playerSelection, computerSelection);
         });
     });
+
+
+    // const buttons = document.querySelectorAll(".btn");
+
+    // buttons.forEach((button) => {
+    //     button.addEventListener('click', () => {
+    //         let buttonValue = "";
+
+    //         if (button.innerHTML.toLowerCase() === "rock") {
+    //             buttonValue = "rock";
+    //         } else if (button.innerHTML.toLowerCase() === "paper") {
+    //             buttonValue = "paper";
+    //         } else if (button.innerHTML.toLowerCase() === "scissors") {
+    //             buttonValue = "scissors";
+    //         }
+
+    //this code is so bad hahahah I can just use buttons.getAttribute but I used a roundabout way, 
+    //but not bad in terms of logical thinking with the knowledge I had previously, however not efficient 
+
+    //         return buttonValue;
+    //     });
+    // });
     
     // let userInput = prompt("Enter rock, paper or scissors: ").toLowerCase();
 
@@ -37,37 +51,45 @@ function getPlayerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+
+    const plySelection = document.querySelector("div.playerChoice");
+    const compSelection = document.querySelector("div.computerChoice");
+    const result = document.querySelector("div.result");
+
+    plySelection.textContent = "\nPlayer Selection: " + playerSelection;
+    compSelection.textContent = "\nComputer Selection: " + computerSelection;
+
     //win
     if (playerSelection == "rock" && computerSelection == "scissors") {
-        console.log("You Win! Rock beats scissors!");
+        result.textContent = "Results: You Win! Rock beats scissors!";
         return "win";
     } else if (playerSelection == "paper" && computerSelection == "rock") {
-        console.log("You Win! Paper beats rock!");
+        result.textContent = "Results: You Win! Paper beats rock!";
         return "win";
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        console.log("You Win! Scissors beats paper!");
+        result.textContent = "Results: You Win! Scissors beats paper!";
         return "win";
     }
     //lose
     else if (playerSelection == "rock" && computerSelection == "paper") {
-        console.log("You Lose! Paper beats rock!");
+        result.textContent = "Results: You Lose! Paper beats rock!";
         return "lose";
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
-        console.log("You Lose! Scissors beats paper!");
+        result.textContent = "Results: You Lose! Scissors beats paper!";
         return "lose";
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
-        console.log("You Lose! Rock beats scissors!");
+        result.textContent = "Results: You Lose! Rock beats scissors!";
         return "lose";
     }
     //draw
     else if (playerSelection == "rock" && computerSelection == "rock") {
-        console.log("Rock and Rock is a draw!");
+        result.textContent = "Results: Rock and Rock is a draw!";
         return "draw";
     } else if (playerSelection == "paper" && computerSelection == "paper") {
-        console.log("Paper and Paper is a draw!");
+        result.textContent = "Results: Paper and Paper is a draw!";
         return "draw";
     } else if (playerSelection == "scissors" && computerSelection == "scissors") {
-        console.log("Scissors and Scissors is a draw!");
+        result.textContent = "Results: Scissors and Scissors is a draw!";
         return "draw";
     }
     else {
@@ -77,13 +99,15 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-function game() {
+getPlayerChoice();
 
-    const playerSelection = getPlayerChoice();
-    const computerSelection = getComputerChoice();
-    const startRound = playRound(playerSelection, computerSelection);
+// function game() {
 
-    startRound;
+//     const playerSelection = getPlayerChoice();
+//     const computerSelection = getComputerChoice();
+//     const startRound = playRound(playerSelection, computerSelection);
+
+//     startRound;
 
     // let winTracker = 0;
     // let loseTracker = 0;
@@ -111,9 +135,13 @@ function game() {
     // winTracker = 0;
     // loseTracker = 0;
     // drawTracker = 0;
-}
+// }
 
 
 
-game();
+// game();
 
+
+
+
+ 

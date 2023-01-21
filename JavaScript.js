@@ -55,6 +55,12 @@ function playRound(playerSelection, computerSelection) {
     const plySelection = document.querySelector("div.playerChoice");
     const compSelection = document.querySelector("div.computerChoice");
     const result = document.querySelector("div.result");
+    const plyScr = document.querySelector("div.plyScore");
+    const compScr = document.querySelector("div.compScore");
+    const win = document.querySelector("div.winner");
+
+    let plyScore = 0;
+    let compScore = 0;
 
     plySelection.textContent = "\nPlayer Selection: " + playerSelection;
     compSelection.textContent = "\nComputer Selection: " + computerSelection;
@@ -62,24 +68,24 @@ function playRound(playerSelection, computerSelection) {
     //win
     if (playerSelection == "rock" && computerSelection == "scissors") {
         result.textContent = "Results: You Win! Rock beats scissors!";
-        return "win";
+        return plyScore++;
     } else if (playerSelection == "paper" && computerSelection == "rock") {
         result.textContent = "Results: You Win! Paper beats rock!";
-        return "win";
+        return plyScore++;
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
         result.textContent = "Results: You Win! Scissors beats paper!";
-        return "win";
+        return plyScore++;
     }
     //lose
     else if (playerSelection == "rock" && computerSelection == "paper") {
         result.textContent = "Results: You Lose! Paper beats rock!";
-        return "lose";
+        return compScore++;
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
         result.textContent = "Results: You Lose! Scissors beats paper!";
-        return "lose";
+        return compScore++;
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
         result.textContent = "Results: You Lose! Rock beats scissors!";
-        return "lose";
+        return compScore++;
     }
     //draw
     else if (playerSelection == "rock" && computerSelection == "rock") {
@@ -97,7 +103,14 @@ function playRound(playerSelection, computerSelection) {
         console.log(playerSelection);
     }
 
+    // //Score tracker
+    // plyScr.textContent = plyScore;
+    // compScr.textContent = compScore;
+    
+
 }
+
+
 
 getPlayerChoice();
 

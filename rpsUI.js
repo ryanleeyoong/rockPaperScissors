@@ -15,6 +15,7 @@ let computerScoreValue = 0;
 
 const playerScore = document.querySelector("div.plyScore");
 const computerScore = document.querySelector("div.compScore");
+const winner = document.querySelector("div.winner");
 
 //Get a randomised rps choice from computer
 function getComputerChoice() {
@@ -71,12 +72,13 @@ function playRound(playerSelection, computerSelection) {
         console.log("Error occured in play round");
         console.log(playerSelection);
     }
+
 }
 
 
 function gameScore(result) {
-    
 
+     
     if (result === "win") {
         playerScoreValue++;
         
@@ -90,9 +92,21 @@ function gameScore(result) {
         console.log("result error");
         
     }
-
+    
     playerScore.textContent = "\nPlayer Score: " + playerScoreValue;
     computerScore.textContent = "\nComputer Score: " + computerScoreValue;
+           
+    if (playerScoreValue === 5) {
+        playerScoreValue = 0;
+        computerScoreValue = 0;
+        winner.textContent = "Player won 5 rounds, so player wins!";
+
+    } else if (computerScoreValue === 5) {
+        playerScoreValue = 0;
+        computerScoreValue = 0;
+        winner.textContent = "Computer won 5 rounds, so player wins!";
+    } 
+
 }
 
 
